@@ -61,3 +61,6 @@ body .game button:hover {
   background-color: #7accff;
   cursor: pointer;
 }
+body .game .remove {
+  display: none;
+}
