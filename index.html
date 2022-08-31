@@ -8,13 +8,14 @@
 </head>
 <body>
     <div class="game">
+        <div class="game__score remove">0</div>
         <div class="game__questions-container remove">
-            <div class="game__question">Question 1?</div>
+            <div class="game__question">Questions 1</div>
             <div class="game__answer-btns">
-                <button class="game__answer">Answer1</button>
-                <button class="game__answer">Answer2</button>
-                <button class="game__answer">Answer3</button>
-                <button class="game__answer">Answer4</button>
+                <button id="answer1" class="game__answer">Answer1</button>
+                <button id="answer2" class="game__answer">Answer2</button>
+                <button id="answer3" class="game__answer">Answer3</button>
+                <button id="answer4" class="game__answer">Answer4</button>
             </div>
         </div>
         <div class="game__functions">
@@ -22,6 +23,6 @@
             <button id="play" class="game__button">Play</button>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="./script.js" type="module"></script>
 </body>
 </html>
