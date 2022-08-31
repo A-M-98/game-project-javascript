@@ -15,10 +15,13 @@ const playGame = () => {
     playButton.classList.add('remove');
     questionsContainer.classList.remove('remove');
     submitButton.classList.remove('remove');
-    submitAndNextQuestion();
+    randomiseQuestions = questions.sort(() => Math.random() - .5);
+    currentQuestion = 0;
+    nextQuestion();
 }
 
 const nextQuestion = () => {
+    displayQuestion(randomiseQuestions[currentQuestion]);
 }
 
 const chooseAnswer = () => {
