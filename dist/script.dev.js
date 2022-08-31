@@ -30,6 +30,19 @@ var nextQuestion = function nextQuestion() {
 
 var displayQuestion = function displayQuestion(quizQuestions) {
   question.innerHTML = quizQuestions.quizQuestion;
+  quizQuestions.answers.forEach(function (answer) {
+    var button = document.createElement("button");
+    button.innerHTML = answer.text;
+    button.classList.add('game__answer');
+
+    if (answer.correct) {
+      button.dataset.correct = answer.correct;
+    }
+
+    ;
+    button.addEventListener("click", chooseAnswer);
+    answerButtons.appendChild(button);
+  });
 };
 
 var chooseAnswer = function chooseAnswer() {};

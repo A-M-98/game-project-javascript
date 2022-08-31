@@ -27,6 +27,17 @@ const nextQuestion = () => {
 
 const displayQuestion= (quizQuestions) => {
     question.innerHTML = quizQuestions.quizQuestion;
+    quizQuestions.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add('game__answer');
+        if(answer.correct) {
+            button.dataset.correct = answer.correct
+        };
+        button.addEventListener("click", chooseAnswer);
+        answerButtons.appendChild(button);
+
+    });
 }
 
 const chooseAnswer = () => {
