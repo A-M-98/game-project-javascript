@@ -1,15 +1,16 @@
 const question = document.querySelector(".game__question");
+const answerButtons = document.querySelector(".game__answer-btns")
 const answers = document.querySelectorAll(".game__answer");
 const submitButton = document.querySelector("#submit");
 const playButton = document.querySelector("#play");
 const questionsContainer = document.querySelector(".game__questions-container");
-const answerButton1 = document.querySelector("#answer1");
-const answerButton2 = document.querySelector("#answer2");
-const answerButton3 = document.querySelector("#answer3");
-const answerButton4 = document.querySelector("#answer4");
-const scores = document.querySelectorAll(".game__score");
+// const answerButton1 = document.querySelector("#answer1");
+// const answerButton2 = document.querySelector("#answer2");
+// const answerButton3 = document.querySelector("#answer3");
+// const answerButton4 = document.querySelector("#answer4");
+// const scores = document.querySelectorAll(".game__score");
 
-const randomiseQuestions, currentQuestion
+let randomiseQuestions, currentQuestion
 
 const playGame = () => {
     playButton.classList.add('remove');
@@ -22,6 +23,10 @@ const playGame = () => {
 
 const nextQuestion = () => {
     displayQuestion(randomiseQuestions[currentQuestion]);
+}
+
+const displayQuestion= (quizQuestions) => {
+    question.innerHTML = quizQuestions.quizQuestion;
 }
 
 const chooseAnswer = () => {
