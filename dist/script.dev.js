@@ -16,7 +16,6 @@ var randomiseQuestions, currentQuestion;
 var playGame = function playGame() {
   playButton.classList.add('remove');
   questionsContainer.classList.remove('remove');
-  submitButton.classList.remove('remove');
   randomiseQuestions = questions.sort(function () {
     return Math.random() - .5;
   });
@@ -25,6 +24,7 @@ var playGame = function playGame() {
 };
 
 var nextQuestion = function nextQuestion() {
+  resetQuestions();
   displayQuestion(randomiseQuestions[currentQuestion]);
 };
 
@@ -45,9 +45,46 @@ var displayQuestion = function displayQuestion(quizQuestions) {
   });
 };
 
-var chooseAnswer = function chooseAnswer() {};
+var resetQuestions = function resetQuestions() {
+  submitButton.classList.add('remove');
+
+  while (answerButtons.firstChild) {
+    answerButtons.removeChild(answerButtons.firstChild);
+  }
+
+  ;
+};
+
+var chooseAnswer = function chooseAnswer(event) {
+  var chosenAnswer = event.target;
+  var correct = chosenAnswer.dataset.correct;
+  setClass(document.body, correct);
+  Array.from(answerButtons.children).forEach(function (answerElement) {
+    setClass(answerElement, answerElement.dataset.correct);
+  });
+  submitButton.classList.remove('remove');
+};
+
+var setClass = function setClass(element, correct) {
+  clearClass(element);
+
+  if (correct) {
+    element.classList.add('correct');
+  } else {
+    element.classList.add('incorrect');
+  }
+};
+
+var clearClass = function clearClass(element) {
+  element.classList.remove('correct');
+  element.classList.remove('incorrect');
+};
 
 playButton.addEventListener("click", playGame);
+submitButton.addEventListener("click", function () {
+  currentQuestion++;
+  nextQuestion();
+});
 var questions = [{
   quizQuestion: "what is 10 + 10?",
   answers: [{

@@ -39,7 +39,7 @@ body .game__answer.correct {
   background-color: lime;
   color: blue;
 }
-body .game__answer.wrong {
+body .game__answer.incorrect {
   background-color: red;
 }
 body .game__functions {

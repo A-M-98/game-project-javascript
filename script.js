@@ -15,13 +15,13 @@ let randomiseQuestions, currentQuestion
 const playGame = () => {
     playButton.classList.add('remove');
     questionsContainer.classList.remove('remove');
-    submitButton.classList.remove('remove');
     randomiseQuestions = questions.sort(() => Math.random() - .5);
     currentQuestion = 0;
     nextQuestion();
 }
 
 const nextQuestion = () => {
+    resetQuestions();
     displayQuestion(randomiseQuestions[currentQuestion]);
 }
 
@@ -40,11 +40,42 @@ const displayQuestion= (quizQuestions) => {
     });
 }
 
-const chooseAnswer = () => {
-    
+const resetQuestions = () => {
+    submitButton.classList.add('remove');
+    while (answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild)
+    };
+}
+
+const chooseAnswer = (event) => {
+    const chosenAnswer = event.target;
+    const correct = chosenAnswer.dataset.correct;
+    setClass(document.body, correct);
+    Array.from(answerButtons.children).forEach(answerElement => {
+        setClass(answerElement, answerElement.dataset.correct)
+    })
+    submitButton.classList.remove('remove');
+}
+
+const setClass = (element, correct) => {
+    clearClass(element);
+    if(correct) {
+        element.classList.add('correct');
+    } else {
+        element.classList.add('incorrect');
+    }
+}
+
+const clearClass = (element) => {
+        element.classList.remove('correct');
+        element.classList.remove('incorrect');
 }
 
 playButton.addEventListener("click", playGame);
+submitButton.addEventListener("click", () => {
+    currentQuestion++;
+    nextQuestion()
+})
 
 const questions = [
     {
